@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>chp-8,9</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    </head>
+  
+    <body>
+        
+        <h2 style="border-top-style: solid;border-bottom-width: 4px;font-size: 20px;width: 80%;margin-left: 20%; margin-right: 20%;color: dodgerblue;">Chapter 8. Verifying the Migration </h2>
+        <div class="paragraph">
+        <b> About this task</b>
+        <p> To test the NetView program that you installed, run the steps in the following order:</p>
+        
+<ol>
+    <li>	Ensure that VTAM and TCP/IP have been started.</li>
+    <li>Start the NetView subsystem address space using job CNMPSSI.</li>
+    <li>Start the NetView program using job CNMPROC.</li>
+    <p> If you are running an additional copy of the NetView program on this LPAR and are using the hardware monitor, enter the following command at the system console:</p>
+    <img src="img.jpg" style="width: 600px;height: 50px;">
+    
+    <li>Log on to the command facility.</li>
+    <li>From the NetView main menu, enter <b>HELP</b> to display the NetView help facility main menu.</li>
+    <li>Press PF3 twice to go to the command facility, then issue the<b> help</b> command to display the command facility help menu.</li>
+    <li>Enter <b>4</b> to display a list of command and command lists for which help exists.</li>
+    <li>Press <b>>PF3</b> twice to return to the command facility, then enter<b> WHO</b> to display session information.</li>
+    <li>Press the <b>Enter</b> key until all data has been displayed, then enter <b>BROWSE CANZLOG</b> to browse the Canzlog log. This command displays all messages and DOMs.</li>
+    <li>Press <b>PF3</b> to return to the command facility, then issue the <b>NPDA</b> command to display the hardware monitor main menu.</li>
+    <li>Issue the <b>ALERTSH</b> command to display the history of alerts recorded on the hardware monitor data base.</li>
+    <li>Press <b>PF3</b> twice to return to the command facility, then issue the <b>NLDM</b> command to display the session monitor main menu.</li>
+    <li>Issue the <b>LIST HISTORY LU</b> command to display a historical listing of logical units.</li>
+    <li>Press <b>PF3</b> twice to return to the command facility, then issue the <b>LOGOFF</b> command to end your operator session.</li>
+        </ol>
+    
+    <p>This completes installation and migration of the NetView program with minimum function. To run the NetView program in production, consider the following actions:</p>
+<ul>
+    <li>	Ensure that the V6R3 modules are active in your production environment. This might require an IPL with CLPA before running the NetView program in production.</li>
+    <li>Allocate the VSAM for the production LPAR.</li>
+    <li>If you have been running multiple NetView programs in the same LPAR, then make sure that one NetView program is set up as the primary program operator (PPO) and the second NetView is set up as the secondary program operator (SPO). For more details, see the information about running multiple NetView programs in the same LPAR in <span style="font-style: italic">IBM Z NetView Installation: Configuring Additional Components.</span></li>
+    <li>Complete any tuning and customization tasks your system requires. See Table 39 on page 110 for more information.</li>
+    <li>If you are using the NetView program for system automation, review your system automation planning and verify that any new operating procedures are ready for implementation.</li>
+        </ul>
+        
+        <p>For each administration task that you have prepared, test to ensure that it has been done correctly. When you are satisfied, the NetView program is ready for full production.</p>
+        
+        <p><b>Note:</b> If you resume production under a previous release of the NetView program, cancel the NetView subsystem job and close the V6R3 application.</p>
+    
+        </div>
+        <hr>
+        <p style="font-style: italic;font-size: 18px;margin-left: 20%">Table 39. Additional Installation, Configuration, Customization, and Tuning Information</p>
+         <center>
+        <table>
+        <tr>
+            <th><b>If you want information about...</b></th>
+            <th><b>Refer to...</b></th>
+            </tr>
+            <tr>
+        <td>Updating NetView program for your environment</td>
+                <td>IBM Z NetView Installation: Configuring Additional Components</td>
+            </tr>
+            <tr>
+            <td>Updating NetView program for graphics</td>
+            <td>IBM Z NetView Installation: Configuring Graphical Components</td>
+            </tr>
+            <tr>
+                <td>Writing installalation exits</td>
+            <td>IBM Z NetView Programming: Assembler or IBM Z NetView Programming: PL/I and C</td>
+            </tr>
+            <tr>
+            <td>Writing command processors</td>
+                <td>IBM Z NetView Programming: Assembler or IBM Z NetView Programming: PL/I and C</td>
+            </tr>
+            <tr>
+                <td>IBM Z NetView Enterprise Management Agent</td>
+                <td>IBM Z NetView Installation: Configuring the NetView Enterprise Management Agent</td>
+            </tr>
+            <tr>
+            <td>IBM Z NetView for Continuous Availability	</td>
+                <td>IBM Z NetView for Continuous Availability Configuring and Using the GDPS Continuous Availability Solution</td>
+            </tr>
+             </table>
+        </center>
+            <hr>    
+         <h2 style="border-top-style: solid;border-bottom-width: 4px;font-size: 20px;width: 80%; color: dodgerblue;margin-left: 20%;margin-right: 205;">Chapter 9. Migrating Graphics </h2>
+        <div class="paragraph">
+        <p>“Migrating from NGMF to the NetView Management Console” on page 111 describes the steps to follow to migrate from NGMF to the NetView management console. The last version of NetView that included NGMF support was NetView V1R4. NetView V6R3 does not allow a NETCONV connection to an NGMF server. Current NGMF users must be upgraded to the NetView management console.</p>
+            <p>“Migrating the NetView Management Console Topology Server and Console” on page 111 describes how to migrate to the NetView V6R3 NetView management console from previous levels of the NetView management console.</p>
+        
+         <h2 style="border-bottom-style: solid; border-bottom-width:4px; width:100%; font-family: 'Yeseva One', serif;color:dodgerblue;">Migrating from NGMF to the NetView Management Console</h2>
+        <p>Migration consists of replacing your NGMF graphic data servers and graphic monitor workstations with NetView management console workstations (both console and server). GMFHS requires no modification when a user migrates from NGMF to the NetView management console.</p>
+        <p>Other migration considerations include:</p>
+        <ul>
+            <li>Context menu command definitions.<br>
+                These include user-defined commands in the Command Profile Editor, and user-defined Command Tree definitions from NGMF to the NetView management console. The NetView program provides a utility to migrate these Command Tree definitions. Refer to the IBM Z NetView User's Guide: NetView Management Console for additional information on this utility. This section also has some tips on migrating the user-defined commands in the Command Profile Editor.</li>
+            <li>View customization.<br>
+                Any view customization is not migrated. It must be redone.</li>
+<li>NGMF server-based command exits.<br>
+    These command exits must be recoded, recompiled, and reinstalled into the NetView management console server.</li>
+<li>NGMF client-based command exits.<br>
+    These command exits must be rewritten in Java.</li>
+            </ul>
+             <h2 style="border-bottom-style: solid; border-bottom-width:4px; width:100%; font-family: 'Yeseva One', serif; color:dodgerblue;">Migrating the NetView Management Console Topology Server and Console	</h2>
+            
+            <p>Complete the migration of the NetView V6R3 host program before migrating the NetView management console topology server and console. New resources for V6R3 are displayed with a red X in place of the icon.</p>
+                <p>A console at the V6R3 topology console communicates only with a server at the V6R3 level, and a server at the V6R3 level communicates only with consoles at the V6R3 level. Also, the Java environment for the NetView management console has been upgraded. Therefore, for each server, you must install the V6R3 level of the NetView management console topology server at the same time you install the V6R3 level of the NetView management console topology console on all consoles that communicate with that server.</p>
+            
+            </div>
+        <center>
+        <table>
+        <tr>
+            <th><b>If you want information about...</b></th>
+            <th><b>Refer to...</b></th>
+            </tr>
+            <tr>
+            <td>Migrating the NetView management console topology console</td>
+                <td>egvread1.me </td>
+            </tr>
+            <tr>
+            <td>Migrating the NetView management console topology server</td>
+                <td>egvread2.me</td>
+                </tr>
+            </table>
+        </center>
+        <hr>
+            <style>
+                table,td{
+                    border: 1px solid black;
+                }
+            
+            </style>
+    </body>
+</html>
